@@ -1,0 +1,13 @@
+.screenContainer{
+    margin-top: 1dvi;
+    margin-right: 6dvi;
+    margin-left: 6dvi;
+    padding-top: 2dvi;
+    padding-bottom: 1dvi;
+    padding-left: 3dvi;
+    padding-right: 3dvi;
+}
+
+.screen{
+    text-align: right;
+}
