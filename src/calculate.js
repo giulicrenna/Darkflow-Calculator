@@ -58,7 +58,7 @@ document.getElementById("coma").addEventListener("click", function () { añadirV
 
 document.getElementById("factorial").addEventListener("click", function () { añadirValores("!") });
 document.getElementById("power").addEventListener("click", function () { añadirValores("^") });
-document.getElementById("sqrt").addEventListener("click", function () { añadirValores("sqrt") });
+document.getElementById("sqrt").addEventListener("click", function () { añadirValores("sqrt(") });
 document.getElementById("raiz_n").addEventListener("click", function () { añadirValores("raiz_n(") });
 document.getElementById("logab").addEventListener("click", function () { añadirValores("log(") });
 document.getElementById("pi").addEventListener("click", function () { añadirValores("pi") });
