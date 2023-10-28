@@ -1,13 +1,71 @@
+button{
+    margin-right: .5dvi;
+    margin-left: .5dvi;
+}
+
 .screenContainer{
+    margin-top: 5dvi;
+    margin-right: 6dvi;
+    margin-left: 6dvi;
+    margin-bottom: 0dvi;
+    padding-top: 2dvi;
+    padding-bottom: 2dvi;
+    padding-left: 2dvi;
+    padding-right: 2dvi;
+}
+
+.keysContainer{
     margin-top: 1dvi;
     margin-right: 6dvi;
     margin-left: 6dvi;
+    margin-bottom: 1dvi;
     padding-top: 2dvi;
-    padding-bottom: 1dvi;
-    padding-left: 3dvi;
-    padding-right: 3dvi;
+    padding-bottom: 2dvi;
+    padding-left: 2dvi;
+    padding-right: 2dvi;
 }
 
 .screen{
+    color: greenyellow;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3dvi;
     text-align: right;
+    margin: 0dvi;
+}
+
+.accordion{
+    margin-right: 6dvi;
+    margin-left: 6dvi;
+    margin-bottom: 5dvi;
+    padding-top: 2dvi;
+    padding-bottom: 2dvi;
+    padding-right: 2dvi;
+}
+
+h2{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 0%;
+}
+
+.buttonsRow{
+    display: flex;
+    flex-direction:inherit;
+    margin-bottom: 1dvi;
+}
+
+.calculatorContainer{
+    margin-top: 1dvi;
+    margin-right: 2dvi;
+    margin-left: 2dvi;
+    display: block;
+    justify-content: center; 
+}
+
+.trigonometricCalculator{
+    margin-top: 1dvi;
+    margin-right: 2dvi;
+    margin-left: 2dvi;
+    display: block;
 }
