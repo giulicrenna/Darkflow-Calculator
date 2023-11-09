@@ -1,5 +1,6 @@
 var screen = document.getElementById("screen");
 var texto = "";
+var ans = "";
 screen.value = texto;
 
 function roundToTwoDecimalPlaces(num) {
@@ -7,7 +8,7 @@ function roundToTwoDecimalPlaces(num) {
 }
 
 function añadirValores(valor) {
-    if(texto == "ERROR"){
+    if (texto == "ERROR") {
         texto = "";
     }
 
@@ -16,22 +17,76 @@ function añadirValores(valor) {
 }
 
 function limpiarscreen() {
+    if (texto != "ERROR") {
+        ans = texto;
+    }
     texto = "";
+    screen.value = texto;
+}
+
+function ponerAns() {
+    texto += ans;
     screen.value = texto;
 }
 
 function calcular() {
     texto = texto.replace(/raiz_n/g, "nthRoot");
-    try {
-        texto = math.evaluate(texto);
-        texto = roundToTwoDecimalPlaces(texto);
-        screen.value = texto;
-        console.log(texto);
-    } catch (error) {
-        texto = "ERROR";
-        screen.value = texto;
+    texto = texto.replace(/sen/g, "sin");
+    texto = texto.replace(/senh/g, "sinh");
+    texto = texto.replace(/asen/g, "asin");
+    texto = texto.replace(/asenh/g, "asinh");
+
+    if (texto.indexOf("d/d") != -1) {
+        var variableDeDerivacion = texto.charAt(3);
+        var expresion = texto.split("(")[1].slice(0, -1);
+        try {
+            texto = math.derivative(expresion, variableDeDerivacion).toString();
+            screen.value = texto;
+            ans = texto;
+        } catch (error) {
+            texto = "ERROR";
+            screen.value = texto;
+            console.log(error);
+        }
+
+        return "";
     }
 
+    else if (texto.indexOf("simplificar") != -1) {
+        var expresion = texto.split("(")[1].slice(0, -1);
+        try {
+            texto = math.simplify(expresion).toString();
+            screen.value = texto;
+            ans = texto
+        } catch (error) {
+            ans = texto;
+            texto = "ERROR";
+            screen.value = texto;
+            console.log(error);
+        }
+
+        return "";
+    }
+
+    else {
+        try {
+            texto = math.evaluate(texto);
+            texto = roundToTwoDecimalPlaces(texto);
+            if (isNaN(texto)) {
+                texto = "FUERA DEL DOMINIO";
+                screen.value = texto;
+                console.log(texto);
+                return ""
+            }
+            ans = texto;
+            screen.value = texto;
+            console.log(texto);
+
+        } catch (error) {
+            texto = "ERROR";
+            screen.value = texto;
+        }
+    }
 }
 
 document.getElementById("0").addEventListener("click", function () { añadirValores("0") });
@@ -65,7 +120,7 @@ document.getElementById("pi").addEventListener("click", function () { añadirVal
 document.getElementById("e").addEventListener("click", function () { añadirValores("e") });
 document.getElementById("phi").addEventListener("click", function () { añadirValores("phi") });
 document.getElementById("i").addEventListener("click", function () { añadirValores("i") });
-document.getElementById("sin").addEventListener("click", function () { añadirValores("sin(") });
+document.getElementById("sin").addEventListener("click", function () { añadirValores("sen(") });
 document.getElementById("cos").addEventListener("click", function () { añadirValores("cos(") });
 document.getElementById("tan").addEventListener("click", function () { añadirValores("tan(") });
 document.getElementById("hiper").addEventListener("click", function () { añadirValores("sinh(") });
@@ -73,3 +128,21 @@ document.getElementById("asin").addEventListener("click", function () { añadirV
 document.getElementById("acos").addEventListener("click", function () { añadirValores("acos(") });
 document.getElementById("atan").addEventListener("click", function () { añadirValores("atan(") });
 document.getElementById("ahip").addEventListener("click", function () { añadirValores("asinh(") });
+document.getElementById("ans").addEventListener("click", function () { ponerAns() });
+
+addEventListener("keypress", (event) => {
+    let key = event['key'];
+    let shift = event['shiftKey']
+
+    if ((key == "C" || key == "c") && shift) {
+        limpiarscreen();
+    } else if ((key == "x" || key == "X") && shift) {
+        texto = texto.slice(0, -1);
+        screen.value = texto;
+    } else if (key == "Enter") {
+        calcular();
+    } else {
+        // console.log(event);
+        añadirValores(key);
+    }
+});
