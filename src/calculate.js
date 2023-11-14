@@ -1,6 +1,8 @@
 var screen = document.getElementById("screen");
+
 var texto = "";
 var ans = "";
+
 screen.value = texto;
 
 function roundToTwoDecimalPlaces(num) {
@@ -8,7 +10,7 @@ function roundToTwoDecimalPlaces(num) {
 }
 
 function añadirValores(valor) {
-    if (texto == "ERROR") {
+    if (texto == "ERROR" || texto == "FUERA DEL DOMINIO") {
         texto = "";
     }
 
@@ -30,6 +32,7 @@ function ponerAns() {
 }
 
 function calcular() {
+    console.log(texto)
     texto = texto.replace(/raiz_n/g, "nthRoot");
     texto = texto.replace(/sen/g, "sin");
     texto = texto.replace(/senh/g, "sinh");
@@ -59,7 +62,6 @@ function calcular() {
             screen.value = texto;
             ans = texto
         } catch (error) {
-            ans = texto;
             texto = "ERROR";
             screen.value = texto;
             console.log(error);
@@ -89,6 +91,47 @@ function calcular() {
     }
 }
 
+/*
+addEventListener("keypress", (event) => {
+    let key = event['key'];
+    let shift = event['shiftKey']
+    
+    if ((key == "C" || key == "c") && shift) {
+        limpiarscreen();
+    } else if ((key == "x" || key == "X") && shift) {
+        texto = texto.slice(0, -1);
+        screen.value = texto;
+    } else if (key == "Enter") {
+        calcular();
+    }else {
+        // console.log(event);
+        añadirValores(key);
+    }
+});
+*/
+
+addEventListener("keypress", (event) => {
+    let key = event['key'];
+    
+    if (key == "Enter") {
+        calcular();
+    }else if ((key == "C" || key == "c") && shift) {
+        limpiarscreen();
+    }
+
+});
+
+/* 
+addEventListener("keydown", (event) => {
+    let key = event.key;
+    
+    if(key === "Backspace" || key === "Delete"){
+        texto = texto.slice(0, -1);
+        screen.value = texto;
+    }
+});
+*/
+
 document.getElementById("0").addEventListener("click", function () { añadirValores("0") });
 document.getElementById("1").addEventListener("click", function () { añadirValores("1") });
 document.getElementById("2").addEventListener("click", function () { añadirValores("2") });
@@ -110,7 +153,6 @@ document.getElementById(")").addEventListener("click", function () { añadirValo
 document.getElementById("punto").addEventListener("click", function () { añadirValores(".") });
 document.getElementById("coma").addEventListener("click", function () { añadirValores(",") });
 // Avanzada
-
 document.getElementById("factorial").addEventListener("click", function () { añadirValores("!") });
 document.getElementById("power").addEventListener("click", function () { añadirValores("^") });
 document.getElementById("sqrt").addEventListener("click", function () { añadirValores("sqrt(") });
@@ -130,19 +172,11 @@ document.getElementById("atan").addEventListener("click", function () { añadirV
 document.getElementById("ahip").addEventListener("click", function () { añadirValores("asinh(") });
 document.getElementById("ans").addEventListener("click", function () { ponerAns() });
 
-addEventListener("keypress", (event) => {
-    let key = event['key'];
-    let shift = event['shiftKey']
-
-    if ((key == "C" || key == "c") && shift) {
-        limpiarscreen();
-    } else if ((key == "x" || key == "X") && shift) {
-        texto = texto.slice(0, -1);
+document.getElementById("screen").addEventListener("input", function (event) { 
+    if (texto == "ERROR" || texto == "FUERA DEL DOMINIO") {
+        texto = "";
         screen.value = texto;
-    } else if (key == "Enter") {
-        calcular();
-    } else {
-        // console.log(event);
-        añadirValores(key);
     }
-});
+    var newTexto = event.target.value; 
+    texto = newTexto;
+ });
