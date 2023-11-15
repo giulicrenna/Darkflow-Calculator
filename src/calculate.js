@@ -1,9 +1,9 @@
-var screen = document.getElementById("screen");
-
 var texto = "";
 var ans = "";
 
+var screen = document.getElementById("screen");
 screen.value = texto;
+
 
 function roundToTwoDecimalPlaces(num) {
     return Math.round(num * 10000000) / 10000000;
@@ -32,7 +32,8 @@ function ponerAns() {
 }
 
 function calcular() {
-    console.log(texto)
+    let operacion = texto;
+    console.log(operacion);
     texto = texto.replace(/raiz_n/g, "nthRoot");
     texto = texto.replace(/sen/g, "sin");
     texto = texto.replace(/senh/g, "sinh");
@@ -46,6 +47,7 @@ function calcular() {
             texto = math.derivative(expresion, variableDeDerivacion).toString();
             screen.value = texto;
             ans = texto;
+            agregarHistorial(operacion, texto);
         } catch (error) {
             texto = "ERROR";
             screen.value = texto;
@@ -60,6 +62,7 @@ function calcular() {
         try {
             texto = math.simplify(expresion).toString();
             screen.value = texto;
+            agregarHistorial(operacion, texto);
             ans = texto
         } catch (error) {
             texto = "ERROR";
@@ -74,19 +77,24 @@ function calcular() {
         try {
             texto = math.evaluate(texto);
             texto = roundToTwoDecimalPlaces(texto);
+            
             if (isNaN(texto)) {
                 texto = "FUERA DEL DOMINIO";
                 screen.value = texto;
                 console.log(texto);
                 return ""
             }
+
             ans = texto;
             screen.value = texto;
-            console.log(texto);
 
+            if(operacion !== texto){
+                agregarHistorial(operacion, texto);
+            }
         } catch (error) {
             texto = "ERROR";
             screen.value = texto;
+            console.log(error)
         }
     }
 }
