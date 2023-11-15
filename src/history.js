@@ -7,10 +7,10 @@ function checkearNulos() {
 function getDate() {
     const now = new Date();
 
-    const currentDate = now.toLocaleDateString(); // Get current date in format MM/DD/YYYY or DD/MM/YYYY depending on the user's locale
-    const currentHour = now.getHours(); // Get current hour (0-23)
-    const currentMinutes = now.getMinutes(); // Get current minutes (0-59)
-    const currentSeconds = now.getSeconds(); // Get current seconds (0-59)
+    const currentDate = now.toLocaleDateString();
+    const currentHour = now.getHours();
+    const currentMinutes = now.getMinutes(); 
+    const currentSeconds = now.getSeconds(); 
 
     const date = `${currentDate} - ${currentHour}:${currentMinutes}:${currentSeconds}`
 
@@ -19,6 +19,7 @@ function getDate() {
 
 function ponerSnippets() {
     checkearNulos();
+    limpiarHistorial();
     let historialActual = JSON.parse(localStorage.getItem('historial'))
 
     let historySnipetContainer = document.getElementById("historySnipetContainer");
@@ -64,7 +65,7 @@ function ponerSnippets() {
 function agregarHistorial(operacion_, resultado_) {
     checkearNulos();
     limpiarHistorial();
-    
+
     let historialActual = JSON.parse(localStorage.getItem('historial'))
 
     historialActual.push({
@@ -123,11 +124,3 @@ function limpiarHistorial(){
     }
 }
 
-document.getElementById("cleanHistory").addEventListener("click", function () {
-    localStorage.clear(historial);
-
-    limpiarHistorial();
-})
-
-checkearNulos()
-ponerSnippets()
