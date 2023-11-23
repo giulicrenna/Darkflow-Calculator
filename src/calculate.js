@@ -103,8 +103,8 @@ function calcular() {
         try {
             draw(expresion);
             screen.value = "GRAFICADO";
-            agregarHistorial(operacion, " ");
-            ans = texto
+            agregarHistorial(operacion, "Gráfica");
+            document.getElementById("plot").scrollIntoView({behavior: "smooth"});
         } catch (error) {
             texto = "ERROR";
             screen.value = texto;

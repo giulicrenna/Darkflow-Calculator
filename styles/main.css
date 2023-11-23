@@ -1,9 +1,9 @@
-button{
+button {
     margin-right: .5dvi;
     margin-left: .5dvi;
 }
 
-.screenContainer{
+.screenContainer {
     margin-top: 5dvi;
     margin-right: 6dvi;
     margin-left: 6dvi;
@@ -14,7 +14,7 @@ button{
     padding-right: 2dvi;
 }
 
-.keysContainer{
+.keysContainer {
     margin-top: 1dvi;
     margin-right: 6dvi;
     margin-left: 6dvi;
@@ -25,8 +25,8 @@ button{
     padding-right: 2dvi;
 }
 
-.plotContainer{
-    margin-top: 1dvi;
+.plotContainer {
+    margin-top: 2dvi;
     margin-right: 6dvi;
     margin-left: 6dvi;
     margin-bottom: 1dvi;
@@ -34,15 +34,15 @@ button{
     padding-bottom: 1dvi;
 }
 
-.screen{
-    color: greenyellow;
-    
+.screen {
+    color: var(--h1-color);
+
     font-size: 4dvh;
     text-align: right;
     margin: 0dvi;
 }
 
-.screen:disabled{
+.screen:disabled {
     color: greenyellow;
     background-color: rgba(240, 248, 255, 0);
     font-size: 3dvi;
@@ -50,12 +50,12 @@ button{
     margin: 0dvi;
 }
 
-.historial{
+.historial {
     font-weight: 700;
 
     margin-top: 1dvi;
-    margin-right: 6dvi;
-    margin-left: 6dvi;
+    margin-right: 4dvi;
+    margin-left: 4dvi;
     margin-bottom: 0dvi;
 
     padding-top: 2dvi;
@@ -64,42 +64,42 @@ button{
     padding-right: 2dvi;
 }
 
-.summary{
+.summary {
     display: flex;
-    justify-content: end; 
+    justify-content: end;
     padding: .5%;
 }
 
-.summary>p{
-    margin: auto; 
+.summary>p {
+    margin: auto;
     margin-left: 1dvi;
     align-items: center;
     font-weight: 700;
     font-size: 20px;
 }
 
-.summary>span{
+.summary>span {
     margin-left: auto;
     margin-right: 3dvi;
 }
 
-.historySnipet{
-    margin:auto; 
+.historySnipet {
+    margin: auto;
     padding: 1dvi;
 }
 
-.historySnipetP{
+.historySnipetP {
     display: flexbox;
-    justify-content:left; 
+    justify-content: left;
     margin-bottom: 0%;
 }
 
-.outline{
+.outline {
     justify-content: center;
     margin-bottom: 1dvi;
 }
 
-.accordion{
+.accordion {
     margin-right: 6dvi;
     margin-left: 6dvi;
     margin-bottom: 5dvi;
@@ -108,30 +108,47 @@ button{
     padding-right: 2dvi;
 }
 
-h2{
+h2 {
     display: flex;
     text-align: center;
     justify-content: center;
     margin-bottom: 0%;
 }
 
-.buttonsRow{
+.buttonsRow {
     display: flex;
-    flex-direction:inherit;
+    flex-direction: inherit;
     margin-bottom: 1dvi;
 }
 
-.calculatorContainer{
+.calculatorContainer {
     margin-top: 1dvi;
     margin-right: 2dvi;
     margin-left: 2dvi;
     display: block;
-    justify-content: center; 
+    justify-content: center;
 }
 
-.trigonometricCalculator{
+.trigonometricCalculator {
     margin-top: 1dvi;
     margin-right: 2dvi;
     margin-left: 2dvi;
     display: block;
+}
+
+.goHome{
+    color: var(--h1-color);
+}
+
+header nav li a svg {
+    width: var(--font-size);
+    height: var(--font-size);
+    color: var(--contrast);
+}
+
+nav {
+    margin: 0;
+    padding-left: 1dvi;
+    padding-right: 1dvi;
+    background-color: var(--contrast-focus);
 }

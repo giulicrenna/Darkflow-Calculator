@@ -27,7 +27,20 @@
     <title>Calculadora Darkflow</title>
 </head>
 
-<body data-theme="dark">
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/" class="goHome"><strong>CALCULADORA</strong></a></li>
+            </ul>
+            <ul>
+                <li><a href="/documentacion">Doc.</a></li>
+                <li><a href="/configuracion">Conf.</a></li>
+                <li><a href="#" id="theme_switcher"></a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
         <article class="screenContainer">
             <input class="screen" id="screen" type="text">
@@ -147,7 +160,7 @@
         <article class="plotContainer">
             <h2><strong>GRÁFICA</strong></h2>
             <div id="plot">
-                
+
             </div>
         </article>
     </main>
