@@ -37,6 +37,15 @@ document.getElementById("acos").addEventListener("click", function () { añadirV
 document.getElementById("atan").addEventListener("click", function () { añadirValores("atan(") });
 document.getElementById("ahip").addEventListener("click", function () { añadirValores("asinh(") });
 document.getElementById("ans").addEventListener("click", function () { ponerAns() });
+// Cálculo
+document.getElementById("ddx").addEventListener("click", function () { añadirValores("d/dx(") });
+document.getElementById("simplificar").addEventListener("click", function () { añadirValores("simplificar(") });
+document.getElementById("fx").addEventListener("click", function () { añadirValores("f(x) =") });
+document.getElementById("xVar").addEventListener("click", function () { añadirValores("x") });
+document.getElementById("yVar").addEventListener("click", function () { añadirValores("y") });
+document.getElementById("zVar").addEventListener("click", function () { añadirValores("z") });
+document.getElementById("wVar").addEventListener("click", function () { añadirValores("w") });
+
 
 document.getElementById("screen").addEventListener("input", function (event) { 
     if (texto == "ERROR" || texto == "FUERA DEL DOMINIO") {

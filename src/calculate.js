@@ -30,18 +30,44 @@ function ponerAns() {
     screen.value = texto;
 }
 
+function expressionGetter(text, delimiter) {
+    const l = text.length;
+    var gotFirst = false;
+    let expression = "";
+
+    for (let i = 0; i < l; i++) {
+        const element = text[i]
+        if (gotFirst) {
+            expression += element;
+        }
+
+        if (element == delimiter) {
+            gotFirst = true;
+        }
+    };
+
+    if(delimiter == "="){
+        return expression;
+    }
+
+    return expression.slice(0, -1);
+}
+
 function calcular() {
     let operacion = texto;
-    console.log(operacion);
     texto = texto.replace(/raiz_n/g, "nthRoot");
     texto = texto.replace(/sen/g, "sin");
     texto = texto.replace(/senh/g, "sinh");
     texto = texto.replace(/asen/g, "asin");
     texto = texto.replace(/asenh/g, "asinh");
 
+    console.log(texto);
     if (texto.indexOf("d/d") != -1) {
         var variableDeDerivacion = texto.charAt(3);
-        var expresion = texto.split("(")[1].slice(0, -1);
+        var expresion = expressionGetter(texto, '(');
+        console.log(expresion)
+
+
         try {
             texto = math.derivative(expresion, variableDeDerivacion).toString();
             screen.value = texto;
@@ -57,7 +83,7 @@ function calcular() {
     }
 
     else if (texto.indexOf("simplificar") != -1) {
-        var expresion = texto.split("(")[1].slice(0, -1);
+        var expresion = expressionGetter(texto, '(');
         try {
             texto = math.simplify(expresion).toString();
             screen.value = texto;
@@ -72,11 +98,27 @@ function calcular() {
         return "";
     }
 
+    else if (texto.indexOf("f(x)") != -1) {
+        var expresion = expressionGetter(texto, '=');
+        try {
+            draw(expresion);
+            screen.value = "GRAFICADO";
+            agregarHistorial(operacion, " ");
+            ans = texto
+        } catch (error) {
+            texto = "ERROR";
+            screen.value = texto;
+            console.log(error);
+        }
+
+        return "";
+    }
+
     else {
         try {
             texto = math.evaluate(texto);
             texto = roundToTwoDecimalPlaces(texto);
-            
+
             if (isNaN(texto)) {
                 texto = "FUERA DEL DOMINIO";
                 screen.value = texto;
@@ -87,7 +129,7 @@ function calcular() {
             ans = texto;
             screen.value = texto;
 
-            if(operacion !== texto){
+            if (operacion !== texto) {
                 agregarHistorial(operacion, texto);
             }
         } catch (error) {
@@ -97,6 +139,8 @@ function calcular() {
         }
     }
 }
+
+
 
 /*
 addEventListener("keypress", (event) => {
@@ -116,16 +160,3 @@ addEventListener("keypress", (event) => {
     }
 });
 */
-
-addEventListener("keypress", (event) => {
-    let key = event['key'];
-    
-    if (key == "Enter") {
-        calcular();
-    }else if ((key == "C" || key == "c") && shift) {
-        limpiarscreen();
-    }
-
-});
-
-

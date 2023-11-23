@@ -25,6 +25,15 @@ button{
     padding-right: 2dvi;
 }
 
+.plotContainer{
+    margin-top: 1dvi;
+    margin-right: 6dvi;
+    margin-left: 6dvi;
+    margin-bottom: 1dvi;
+    padding-top: 2dvi;
+    padding-bottom: 1dvi;
+}
+
 .screen{
     color: greenyellow;
     
