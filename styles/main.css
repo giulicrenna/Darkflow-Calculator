@@ -152,3 +152,14 @@ nav {
     padding-right: 1dvi;
     background-color: var(--contrast-focus);
 }
+
+.icon{
+    width: 7dvh; 
+    height: 7dvh;
+    margin-left: 2dvh;
+}
+
+.doc{
+    margin: 5dvh;
+    padding: 3dvh;
+}
