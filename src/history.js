@@ -2,6 +2,10 @@ function checkearNulos() {
     if (localStorage.getItem('historial') == 'undefined' || localStorage.getItem('historial') == null) {
         localStorage.setItem('historial', JSON.stringify([]))
     }
+
+    if (localStorage.getItem('theme') == 'undefined' || localStorage.getItem('theme') == null) {
+        localStorage.setItem('theme', 'light')
+    }
 }
 
 function getDate() {
@@ -67,7 +71,7 @@ function agregarHistorial(operacion_, resultado_) {
     limpiarHistorial();
 
     let historialActual = JSON.parse(localStorage.getItem('historial'))
-
+    
     historialActual.push({
         fecha: getDate(),
         operacion: operacion_,
