@@ -104,6 +104,7 @@ function calcular() {
             draw(expresion);
             screen.value = "GRAFICADO";
             agregarHistorial(operacion, "Gráfica");
+            
             document.getElementById("plot").scrollIntoView({behavior: "smooth"});
         } catch (error) {
             texto = "ERROR";
